@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 18, 2022 at 02:08 PM
+-- Generation Time: Dec 24, 2022 at 04:35 AM
 -- Server version: 5.7.36
 -- PHP Version: 7.4.26
 
@@ -32,8 +32,7 @@ CREATE TABLE IF NOT EXISTS `advance_payment` (
   `advancePay_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `advance_amount` int(11) NOT NULL,
   `booking_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`advancePay_id`),
-  KEY `booking_id` (`booking_id`)
+  PRIMARY KEY (`advancePay_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -69,9 +68,7 @@ CREATE TABLE IF NOT EXISTS `booking_details` (
   `date_submit` date NOT NULL,
   `customer_id` int(10) UNSIGNED NOT NULL,
   `letterNo` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`booking_id`),
-  KEY `customer_id` (`customer_id`),
-  KEY `letterNo` (`letterNo`)
+  PRIMARY KEY (`booking_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -83,14 +80,12 @@ CREATE TABLE IF NOT EXISTS `booking_details` (
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
   `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(100) NOT NULL,
-  `last _name` varchar(100) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   `telephone_num` int(10) NOT NULL,
-  `role_id` int(11) NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`customer_id`),
-  KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -106,8 +101,7 @@ CREATE TABLE IF NOT EXISTS `full_payment` (
   `security_ammount` int(11) NOT NULL,
   `total_amount` int(11) NOT NULL,
   `advancePay_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`fullpayment_id`),
-  KEY `advancePay_id` (`advancePay_id`)
+  PRIMARY KEY (`fullpayment_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -134,8 +128,7 @@ CREATE TABLE IF NOT EXISTS `refundablecharge_process` (
   `VC_A` text NOT NULL,
   `vice_chancellar` varchar(255) NOT NULL,
   `refundCallBack_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`refundRecharge_id`),
-  KEY `refundCallBack_id` (`refundCallBack_id`)
+  PRIMARY KEY (`refundRecharge_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -151,8 +144,7 @@ CREATE TABLE IF NOT EXISTS `refundable_payment` (
   `refundable_payment_status` varchar(100) NOT NULL DEFAULT 'no',
   `refundable_paymentDay` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fullpayment_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`refundablePay_id`),
-  KEY `fullpayment_id` (`fullpayment_id`)
+  PRIMARY KEY (`refundablePay_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -173,8 +165,7 @@ CREATE TABLE IF NOT EXISTS `requestletter_info` (
   `signOff` varchar(255) NOT NULL,
   `is_approved` int(11) NOT NULL DEFAULT '0',
   `customer_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`letterNo`),
-  KEY `customer_id` (`customer_id`)
+  PRIMARY KEY (`letterNo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -191,8 +182,7 @@ CREATE TABLE IF NOT EXISTS `requestrefund_info` (
   `signOff_refund` varchar(255) NOT NULL,
   `sendDate_refundReq` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `refundablePay_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`refundCallBack_id`),
-  KEY `refundablePay_id` (`refundablePay_id`)
+  PRIMARY KEY (`refundCallBack_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -222,8 +212,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `telephone_num` int(10) NOT NULL,
   `role_id` int(11) NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
-  PRIMARY KEY (`staff_id`),
-  KEY `user_id` (`user_id`)
+  PRIMARY KEY (`staff_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -256,73 +245,14 @@ CREATE TABLE IF NOT EXISTS `timeallocation` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `role_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL DEFAULT '0',
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `verification_id` varchar(255) NOT NULL,
   `verification_status` int(11) NOT NULL,
   PRIMARY KEY (`user_id`,`role_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `advance_payment`
---
-ALTER TABLE `advance_payment`
-  ADD CONSTRAINT `advance_payment_ibfk_1` FOREIGN KEY (`booking_id`) REFERENCES `booking_details` (`booking_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `booking_details`
---
-ALTER TABLE `booking_details`
-  ADD CONSTRAINT `booking_details_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `booking_details_ibfk_3` FOREIGN KEY (`letterNo`) REFERENCES `requestletter_info` (`letterNo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `customer`
---
-ALTER TABLE `customer`
-  ADD CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `full_payment`
---
-ALTER TABLE `full_payment`
-  ADD CONSTRAINT `full_payment_ibfk_1` FOREIGN KEY (`advancePay_id`) REFERENCES `advance_payment` (`advancePay_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `refundablecharge_process`
---
-ALTER TABLE `refundablecharge_process`
-  ADD CONSTRAINT `refundablecharge_process_ibfk_1` FOREIGN KEY (`refundCallBack_id`) REFERENCES `requestrefund_info` (`refundCallBack_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `refundable_payment`
---
-ALTER TABLE `refundable_payment`
-  ADD CONSTRAINT `refundable_payment_ibfk_1` FOREIGN KEY (`fullpayment_id`) REFERENCES `full_payment` (`fullpayment_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `requestletter_info`
---
-ALTER TABLE `requestletter_info`
-  ADD CONSTRAINT `requestletter_info_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `requestrefund_info`
---
-ALTER TABLE `requestrefund_info`
-  ADD CONSTRAINT `requestrefund_info_ibfk_1` FOREIGN KEY (`refundablePay_id`) REFERENCES `refundable_payment` (`refundablePay_id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `staff`
---
-ALTER TABLE `staff`
-  ADD CONSTRAINT `staff_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
