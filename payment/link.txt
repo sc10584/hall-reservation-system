@@ -1,0 +1,5 @@
+https://bbbootstrap.com/snippets/payment-form-input-mask-20478269
+
+https://stackoverflow.com/questions/45059544/how-to-auto-fill-html-form-using-php-and-mysql
+
+https://html.form.guide/calculation-forms/simple-html-calculation-form/
