@@ -22,17 +22,24 @@
             <div class="card-header text-center">
                 <h1>Rabindranath Tagore Auditorium</h1>
             </div>
-            <div class="mt-3">
-                <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+            <div class="">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
                     <a class="navbar-brand " href="#">University of Ruhuna</a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            
+                        <li class="nav-item">
+                                <a class="nav-link" href="loggedinindex.php"></i>Home</a>
+                            </li>
+                        
+
                             <li class="nav-item ">
-                                <a class="nav-link" href="../requestletter/requestletter.php">Request letter </a>
+                                <a class="nav-link" href="requestletter.php">Request letter </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Booking</a>
                             </li>
+                            
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,11 +56,11 @@
                     <form class="justify-content-end">
                         <?php 
                             if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==TRUE) {
-                                echo $_SESSION['email']." - <a href='logout.php' class='btn btn'>LOGOUT</a>";
+                                echo "<i class='fa fa-fw fa-user'></i>".$_SESSION['username']." you are logged in! "."  <a href='logout.php' class='link-dark'>logout</a>";
                                
                             }else{
-                                echo "<button type='button' class='btn btn m-1' data-bs-toggle  ='modal' data-bs-target='#loginModal'>Login</button>
-                                <button type='button' class='btn btn m-1' data-bs-toggle='modal' data-bs-target='#RegisterModal'>Register</button>";
+                                echo "<button type='button' class='btn btn m-1' data-bs-toggle  ='modal' data-bs-target='#loginModal'><i class='fa fa-fw fa-user'></i>Login</button>
+                                <button type='button' class='btn btn m-1' data-bs-toggle='modal' data-bs-target='#RegisterModal'><i class='fa fa-fw fa-user'></i>Register</button>";
                                 
                             }
                          ?>

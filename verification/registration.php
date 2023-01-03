@@ -32,7 +32,7 @@
             $mail->isHTML(true);
             $mail->Subject = 'email verification from aatmaninfo';
             $mail->Body    = "Thanks for registration.<br>click the link bellow to verify the email address
-            <a href='http://localhost/project/verification/verify.php?email=$email&v_cod=$v_cod'>verify</a>";
+            <a href='http://localhost/hall-reservation-system/verification/verify.php?email=$email&v_cod=$v_cod'>verify</a>";
 
             $mail->send();
                 return true;
