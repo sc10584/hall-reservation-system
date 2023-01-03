@@ -2,11 +2,12 @@
 <?php
         include("../verification/connection.php");
 		//include_once("createtable.php");
+        mysqli_select_db($sql,"project");
 
         session_start();
         $customerid = $_SESSION['customer_id'];
 
-        mysqli_select_db($sql,"project");
+        
         if(isset($_POST['submit'])){
 			
 			$sendersadd=$_POST['sendersadd'];
