@@ -26,7 +26,7 @@
 				die("Invalid query".mysqli_error());
 			}else{
 				#echo "<h1>For requesting permission to reserve the Rabindranath Tagore Memorial Auditorium, University of Ruhuna</h1>";
-				
+				$_SESSION['reqstletterid'] = mysqli_insert_id($sql);
 			}
 		}
 
