@@ -1,9 +1,14 @@
 <?php
         //include connection file
-        include_once("final.php");
-		session_start();
+        include_once("../verification/connection.php");
         //select database
-        mysqli_select_db($conn,"projectdb");
+        mysqli_select_db($sql,"project");
+
+        session_start();
+        $_SESSION['bookingid'];
+
+        $lastbookid = $_SESSION['bookingid'];
+        
         if(isset($_POST['nextpage2']))
            { 
             $mband=$_POST['mband'];
@@ -35,15 +40,6 @@
                 }  
 
             //insert data to the table booking_details
-           /* $bookdata="INSERT INTO booking_details ( matter ,
-            musical_show ,
-            band ,
-            singers ,
-            guests ,
-            audience ,
-            date_application ,
-            time_application) 
-            VALUES('$chk','$ch','$mband','$psingers','$details_show','$checkb','$req_date','$req_time')";*/
 
             $bookdata="UPDATE booking_details SET matter='$chk',
             musical_show='$ch',
@@ -52,15 +48,15 @@
             guests='$details_show',
             audience='$checkb',
             date_application='$req_date',
-            time_application='$req_time'";
+            time_application='$req_time' WHERE booking_id =  $lastbookid";
 
             
-            $book2=mysqli_query($conn,$bookdata);
+            $book2=mysqli_query($sql,$bookdata);
 			if(!$book2){
-				die("Invalid query".mysqli_error($conn));
+				die("Invalid query".mysqli_error($sql));
 			}else
             {
-				echo "data inserted to the table";	
+				//echo "data inserted to the table";	
 			}
 		}
 
@@ -168,11 +164,11 @@
 
         <div class="form-group">
         <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="http://localhost/final/boot/applicationI1.php">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="http://localhost/final/boot/applicationI1.php">1</a></li>
-        <li class="page-item"><a class="page-link" href="http://localhost/final/boot/application2.php">2</a></li>
-        <li class="page-item"><a class="page-link" href="http://localhost/final/boot/application3.php">3</a></li>
-        <li class="page-item"><a class="page-link" href="http://localhost/final/boot/application3.php">Next</a></li>
+        <li class="page-item"><a class="page-link" href="http://localhost/project/booking/application1.php">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="http://localhost/project/booking/application1.php">1</a></li>
+        <li class="page-item"><a class="page-link" href="http://localhost/project/booking/application2.php">2</a></li>
+        <li class="page-item"><a class="page-link" href="http://localhost/project/booking/application3.php">3</a></li>
+        <li class="page-item"><a class="page-link" href="http://localhost/project/booking/application3.php">Next</a></li>
         </ul>
         
 

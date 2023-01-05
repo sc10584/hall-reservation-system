@@ -7,6 +7,7 @@ $selectletter = "SELECT * FROM requestletter_info WHERE customer_id =$customerid
 
 $qryselectletter = $sql->query($selectletter);
 
+
 $selectcustomername = "SELECT * FROM customer WHERE customer_id =$customerid";
 $qryforname = $sql->query($selectcustomername);
 
@@ -16,6 +17,7 @@ if($qryforname)
     {
         $cusfname = $row['first_name'];
         $cuslname = $row['last_name'];
+        $custelephone = $row['telephone_num'];
     }
 }
 
@@ -23,6 +25,11 @@ else
 {
 
 }
+
+$_SESSION['cusfname'] = $cusfname;
+$_SESSION['cuslname'] = $cuslname;
+$_SESSION['custelephone'] = $custelephone;
+
 
 ?>
 
@@ -49,6 +56,9 @@ else
         {  
             while($row = $qryselectletter->fetch_assoc())
             {
+                $customeraddress = $row['senderAddress'];
+                $_SESSION['cusaddress'] = $customeraddress;
+
             ?>
             <div class="row">
                 <div class="col-12">
@@ -80,7 +90,7 @@ else
                                         </tr>
                                     </tbody>
                                 </table>
-                                    <a href="#" class="btn btn-primary float-end">Book Now</a>  
+                                    <a href="application1.php" class="btn btn-primary float-end">Book Now</a>  
                             </div>
                         </div>
                     </div>

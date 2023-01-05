@@ -1,9 +1,17 @@
 <?php
         //include connection file
-        include_once("final.php");
-        session_start();
+        include_once("../verification/connection.php");
         //select database
-        mysqli_select_db($conn,"projectdb");
+        mysqli_select_db($sql,"project");
+
+        session_start();
+        $_SESSION['bookingid'];
+        $_SESSION['reqstletterid'];
+
+        $lastbookid = $_SESSION['bookingid'];
+        $requestletterid = $_SESSION['reqstletterid'];
+        $customerid = $_SESSION['customer_id'];
+
         if(isset($_POST['nextpage3'])){
 			
             $lightning=$_POST['lightning'];
@@ -11,7 +19,6 @@
             $generators=$_POST['generators'];
             $decorations=$_POST['decorations'];
             $tickets=$_POST['ticket'];
-            $date_submit=$_POST['date_submit'];
 
             //insert data from checkbox about security guard for the function
             $checkd="";
@@ -31,21 +38,21 @@
 
             //insert data to the table booking_details
 
-            $bookdata="UPDATE booking_details SET lightning='$lightning',
+            $bookdata3="UPDATE booking_details SET lightning='$lightning',
             sound='$sound',
             generators='$generators',
             decorations='$decorations',
             tickets='$tickets',
             controlling_sec='$checkd',
-            date_submit='$date_submit',
-            agreement='$agreement'";
+            customer_id = '$customerid'
+            WHERE booking_id =  $lastbookid";
 
-			$book3=mysqli_query($conn,$bookdata);
+			$book3=mysqli_query($sql,$bookdata3);
 			if(!$book3){
-				die("Invalid query".mysqli_error());
+				die("Invalid query".mysqli_error($sql));
 			}else
             {
-				echo "data inserted successfully";	
+				//echo "data inserted successfully";	
 			}
 		}
     ?>
@@ -111,10 +118,10 @@
 
         <div class="form-group">
         <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="http://localhost/final/boot/applicationI2.php">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="http://localhost/final/boot/applicationI1.php">1</a></li>
-        <li class="page-item"><a class="page-link" href="http://localhost/final/boot/application2.php">2</a></li>
-        <li class="page-item"><a class="page-link" href="http://localhost/final/boot/application3.php">3</a></li>
+        <li class="page-item"><a class="page-link" href="http://localhost/project/booking/application2.php">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="http://localhost/project/booking/application1.php">1</a></li>
+        <li class="page-item"><a class="page-link" href="http://localhost/project/booking/application2.php">2</a></li>
+        <li class="page-item"><a class="page-link" href="http://localhost/project/booking/application3.php">3</a></li>
         </ul>
 
         </form>
