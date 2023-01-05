@@ -21,6 +21,19 @@
             <div class="card-header text-center">
                 <h1>Rabindranath Tagore Auditorium</h1>
             </div>
+            <?php 
+                            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==TRUE) {
+                                echo "<i class='fa fa-fw fa-user'></i>".$_SESSION['username']." you are logged in! "."<a href='logout.php' class='link-dark'>Logout</a>";
+                                //<a href='booking.php' class='nav-link'>RESERVATION</a>";
+                            
+                            }else{
+                                //echo "<ul class><li><a class='nav-link' data-bs-toggle  ='modal' data-bs-target='#loginModal'>Login</a></li></ul>";
+                                #<button type='button' class='btn btn m-1' data-bs-toggle='modal' data-bs-target='#RegisterModal'>Register</button>
+                                
+                                #<a href="" role="button" data-toggle="modal" data-bs-target="#loginModal" data-parent="#accordion">ji</a>";
+                                
+                            }
+                         ?>
             <div class=>
             <nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
                     <a class="navbar-brand " href="#">University of Ruhuna</a>
@@ -50,19 +63,7 @@
                     
                     
                     <form class="justify-content-end">
-                        <?php 
-                            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']==TRUE) {
-                                echo "i class='fa fa-fw fa-user'></i>".$_SESSION['username']." you are logged in! "."<a href='logout.php' class='link-dark'>Logout</a>";
-                                //<a href='booking.php' class='nav-link'>RESERVATION</a>";
-                            
-                            }else{
-                                //echo "<ul class><li><a class='nav-link' data-bs-toggle  ='modal' data-bs-target='#loginModal'>Login</a></li></ul>";
-                                #<button type='button' class='btn btn m-1' data-bs-toggle='modal' data-bs-target='#RegisterModal'>Register</button>
-                                
-                                #<a href="" role="button" data-toggle="modal" data-bs-target="#loginModal" data-parent="#accordion">ji</a>";
-                                
-                            }
-                         ?>
+                        
                     </form>
                     </div>
                     </ul>

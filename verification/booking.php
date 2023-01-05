@@ -24,31 +24,31 @@
             </div>
             <div class="">
                 <nav class="navbar navbar-expand-lg navbar-light bg-light p-0">
-                    <a class="navbar-brand " href="#">University of Ruhuna</a>
+                    <a class="navbar-brand " href="booking.php">University of Ruhuna</a>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             
                         <li class="nav-item">
-                                <a class="nav-link" href="loggedinindex.php"></i>Home</a>
+                                <a class="nav-link" href="booking.php"></i>Home</a>
                             </li>
                         
 
                             <li class="nav-item ">
-                                <a class="nav-link" href="requestletter.php">Request letter </a>
+                                <a class="nav-link" href="../requestletter/requestletter.php">Request letter </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Booking</a>
+                                <a class="nav-link" href="../booking/checkoutrqsthall.php">Booking</a>
                             </li>
                             
 
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                             Payements
+                             Payments
                                 </a>
                                     <ul class="dropdown-menu dropdown bg-dark " aria-labelledby="navbarDarkDropdownMenuLink">
-                                        <li><a class="dropdown-item text-light" href="">Advaced Payement</a></li>
-                                        <li><a class="dropdown-item text-light" href="">Full Payement</a></li>
-                                        <li><a class="dropdown-item text-light" href="#">Refundable</a></li>
+                                        <li><a class="dropdown-item text-light" href="">Advaced Payment</a></li>
+                                        <li><a class="dropdown-item text-light" href="">Full Payment</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Refundable Payment</a></li>
                                     </ul>
                         </ul>
                     </div>
